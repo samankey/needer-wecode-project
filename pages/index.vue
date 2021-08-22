@@ -1,7 +1,9 @@
 <template>
-  <div>index page</div>
+  <div>index</div>
 </template>
 
 <script>
 export default {}
 </script>
+
+<style lang="sass" scoped></style>
