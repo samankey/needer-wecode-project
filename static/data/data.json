@@ -1,0 +1,46 @@
+{
+  "_id": "1",
+  "user": {
+    "email": "samankeyc@gmail.com",
+    "password": "1234!!DDdd",
+    "name": "Mingi Choi",
+    "type": "part-time"
+  },
+
+  "goToWorkTime": "2021. 8. 23. 오후 3:51:49",
+  "offWorkTime": "2021. 8. 23. 오후 8:51:49",
+
+  "schdule": {
+    "mon": {
+      "start": "오전 9:00:00",
+      "end": "오후 6:00:00",
+      "off": false
+    },
+    "tue": {
+      "start": "오전 9:00:00",
+      "end": "오후 6:00:00",
+      "off": false
+    },
+    "wed": {
+      "start": "오전 9:00:00",
+      "end": "오후 6:00:00",
+      "off": false
+    },
+    "thu": {
+      "start": "오전 9:00:00",
+      "end": "오후 6:00:00",
+      "off": false
+    },
+    "fri": {
+      "start": "오전 9:00:00",
+      "end": "오후 6:00:00",
+      "off": false
+    },
+    "sat": {
+      "off": true
+    },
+    "sun": {
+      "off": true
+    }
+  }
+}
