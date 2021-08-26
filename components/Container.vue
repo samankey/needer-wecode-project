@@ -6,6 +6,6 @@
 
 <style lang="scss">
 .container {
-  margin: 0 18%;
+  margin: 0px 0px 0px calc(max((100vw - 1200px) / 2, 0px));
 }
 </style>

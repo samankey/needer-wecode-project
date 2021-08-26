@@ -1,46 +1,484 @@
 {
-  "_id": "1",
-  "user": {
-    "email": "samankeyc@gmail.com",
-    "password": "1234!!DDdd",
-    "name": "Mingi Choi",
-    "type": "part-time"
-  },
-
-  "goToWorkTime": "2021. 8. 23. 오후 3:51:49",
-  "offWorkTime": "2021. 8. 23. 오후 8:51:49",
-
-  "schdule": {
-    "mon": {
-      "start": "오전 9:00:00",
-      "end": "오후 6:00:00",
-      "off": false
+  "ListItemData": [
+    {
+      "id": 1,
+      "workid": "samankeyc",
+      "date": "2021-08-01",
+      "companyName": "삼촌네",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "",
+        "endTime": ""
+      },
+      "isTimeOver": false,
+      "isToWork": false
     },
-    "tue": {
-      "start": "오전 9:00:00",
-      "end": "오후 6:00:00",
-      "off": false
+    {
+      "id": 2,
+      "workid": "samankeyc",
+      "date": "2021-08-02",
+      "companyName": "삼촌네",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "10:55",
+        "endTime": "17:04"
+      },
+      "isTimeOver": false,
+      "isToWork": false
     },
-    "wed": {
-      "start": "오전 9:00:00",
-      "end": "오후 6:00:00",
-      "off": false
+    {
+      "id": 3,
+      "workid": "samankeyc",
+      "date": "2021-08-03",
+      "companyName": "삼촌네",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "10:55",
+        "endTime": "17:34"
+      },
+      "isTimeOver": false,
+      "isToWork": false
     },
-    "thu": {
-      "start": "오전 9:00:00",
-      "end": "오후 6:00:00",
-      "off": false
+    {
+      "id": 4,
+      "workid": "samankeyc",
+      "date": "2021-08-04",
+      "companyName": "삼촌네",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "10:55",
+        "endTime": "17:04"
+      },
+      "isTimeOver": false,
+      "isToWork": false
     },
-    "fri": {
-      "start": "오전 9:00:00",
-      "end": "오후 6:00:00",
-      "off": false
+    {
+      "id": 5,
+      "workid": "samankeyc",
+      "date": "2021-08-05",
+      "companyName": "삼촌네",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "10:55",
+        "endTime": "17:04"
+      },
+      "isTimeOver": false,
+      "isToWork": false
     },
-    "sat": {
-      "off": true
+    {
+      "id": 6,
+      "workid": "samankeyc",
+      "date": "2021-08-06",
+      "companyName": "삼촌네",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "10:55",
+        "endTime": "17:04"
+      },
+      "isTimeOver": false,
+      "isToWork": false
     },
-    "sun": {
-      "off": true
+    {
+      "id": 7,
+      "workid": "samankeyc",
+      "date": "2021-08-07",
+      "companyName": "삼촌네",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "",
+        "endTime": ""
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 8,
+      "workid": "samankeyc",
+      "date": "2021-08-08",
+      "companyName": "삼촌네",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "",
+        "endTime": ""
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 9,
+      "workid": "samankeyc",
+      "date": "2021-08-09",
+      "companyName": "삼촌네",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "10:55",
+        "endTime": "17:04"
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 10,
+      "workid": "samankeyc",
+      "date": "2021-08-10",
+      "companyName": "삼촌네",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "10:55",
+        "endTime": "18:04"
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 11,
+      "workid": "samankeyc",
+      "date": "2021-08-01",
+      "companyName": "싸와디",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "10:55",
+        "endTime": "17:34"
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 12,
+      "workid": "samankeyc",
+      "date": "2021-08-01",
+      "companyName": "싸와디",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "10:55",
+        "endTime": "17:04"
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 13,
+      "workid": "samankeyc",
+      "date": "2021-08-01",
+      "companyName": "싸와디",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "10:55",
+        "endTime": "17:04"
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 14,
+      "workid": "samankeyc",
+      "date": "2021-08-01",
+      "companyName": "싸와디",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "",
+        "endTime": ""
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 15,
+      "workid": "samankeyc",
+      "date": "2021-08-01",
+      "companyName": "싸와디",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "",
+        "endTime": ""
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 16,
+      "workid": "samankeyc",
+      "date": "2021-08-16",
+      "companyName": "싸와디",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "10:55",
+        "endTime": "17:32"
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 17,
+      "workid": "samankeyc",
+      "date": "2021-08-17",
+      "companyName": "싸와디",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "10:50",
+        "endTime": "17:14"
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 18,
+      "workid": "samankeyc",
+      "date": "2021-08-18",
+      "companyName": "싸와디",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "10:53",
+        "endTime": "17:04"
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 19,
+      "workid": "samankeyc",
+      "date": "2021-08-19",
+      "companyName": "싸와디",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "10:59",
+        "endTime": "17:04"
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 20,
+      "workid": "samankeyc",
+      "date": "2021-08-20",
+      "companyName": "싸와디",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "10:55",
+        "endTime": "17:27"
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 21,
+      "workid": "samankeyc",
+      "date": "2021-08-21",
+      "companyName": "매머드커피",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "",
+        "endTime": ""
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 22,
+      "workid": "samankeyc",
+      "date": "2021-08-22",
+      "companyName": "매머드커피",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "",
+        "endTime": ""
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 23,
+      "workid": "samankeyc",
+      "date": "2021-08-23",
+      "companyName": "매머드커피",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "10:55",
+        "endTime": "17:04"
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 24,
+      "workid": "samankeyc",
+      "date": "2021-08-24",
+      "companyName": "매머드커피",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "10:55",
+        "endTime": "17:01"
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 25,
+      "workid": "samankeyc",
+      "date": "2021-08-25",
+      "companyName": "매머드커피",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "10:55",
+        "endTime": "17:04"
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 26,
+      "workid": "samankeyc",
+      "date": "2021-08-26",
+      "companyName": "매머드커피",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "10:52",
+        "endTime": "17:29"
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 27,
+      "workid": "samankeyc",
+      "date": "2021-08-27",
+      "companyName": "매머드커피",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "10:55",
+        "endTime": "17:40"
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 28,
+      "workid": "samankeyc",
+      "date": "2021-08-28",
+      "companyName": "매머드커피",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "",
+        "endTime": ""
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 29,
+      "workid": "samankeyc",
+      "date": "2021-08-29",
+      "companyName": "매머드커피",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "",
+        "endTime": ""
+      },
+      "isTimeOver": false,
+      "isToWork": false
+    },
+    {
+      "id": 30,
+      "workid": "samankeyc",
+      "date": "2021-08-30",
+      "companyName": "매머드커피",
+      "getTime": {
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "setTime": {
+        "startTime": "10:55",
+        "endTime": "17:30"
+      },
+      "isTimeOver": false,
+      "isToWork": false
     }
-  }
+  ]
 }

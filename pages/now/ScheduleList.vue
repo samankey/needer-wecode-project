@@ -30,7 +30,6 @@
 <style lang="scss" scoped>
 .scheduleList {
   margin: 20px 0 100px 0;
-  width: 890px;
   background: #fff;
   border-radius: 12px;
   box-shadow: rgba(20, 20, 20, 0.02) 2px 8px 12px 0px,
