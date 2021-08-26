@@ -36,11 +36,6 @@
       </div>
     </div>
     <div class="workProgressBar"></div>
-    <div class="workHourRecord">
-      <div class="dot"></div>
-      <p>자동 근무 기록</p>
-      <p>오전 09:30 ~ 오후 06:30</p>
-    </div>
   </div>
 </template>
 
@@ -62,6 +57,9 @@ export default {
 
 <style lang="scss" scoped>
 .workIndicator {
+  max-width: 66.6667%;
+  flex-basis: 66.6667%;
+
   .workSummary {
     display: flex;
 
@@ -76,15 +74,6 @@ export default {
         .totalWork {
           padding: 3px 6px 0 0;
         }
-
-        /* .status {
-          padding: 5px 9px 3px 9px;
-          border-radius: 999px;
-          color: #fff;
-          background-color: rgb(139, 152, 167);
-          font-size: 12px;
-          font-weight: 400;
-        } */
       }
       .workHour {
         display: flex;
@@ -136,30 +125,10 @@ export default {
 
   .workProgressBar {
     margin: 35px 0 30px;
+    width: calc(100% - 8px);
     height: 14px;
     border-radius: 999px;
     background-color: rgb(236, 236, 236);
-  }
-  .workHourRecord {
-    display: flex;
-    align-items: center;
-
-    .dot {
-      margin-right: 10px;
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background-color: rgb(83, 196, 139);
-    }
-
-    p:first-of-type {
-      margin-right: 20px;
-      color: rgb(99, 114, 131);
-    }
-
-    p:last-of-type {
-      font-weight: 600;
-    }
   }
 }
 </style>

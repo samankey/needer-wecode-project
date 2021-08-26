@@ -1,9 +1,9 @@
 <template>
   <div>
-    <!-- <Container> -->
-    <ScheduleNav />
-    <Nuxt />
-    <!-- </Container> -->
+    <Container>
+      <ScheduleNav />
+      <Nuxt />
+    </Container>
   </div>
 </template>
 

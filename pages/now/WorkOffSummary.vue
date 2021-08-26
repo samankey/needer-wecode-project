@@ -17,7 +17,7 @@
 
 <style lang="scss" scoped>
 .workOffSummary {
-  margin-left: 80px;
+  flex-basis: 25%;
 
   .workOffDesc {
     display: flex;
