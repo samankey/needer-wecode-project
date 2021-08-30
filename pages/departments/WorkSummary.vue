@@ -12,20 +12,20 @@
         <p>오전 09:30 ~ 오후 06:30</p>
       </div>
     </div>
-    <ScheduleList />
+    <UserInfoSummary />
   </div>
 </template>
 
 <script>
 import WorkIndicators from './WorkIndicators.vue'
 import WorkOffSummary from './WorkOffSummary.vue'
-import ScheduleList from './ScheduleList.vue'
+import UserInfoSummary from './UserInfoSummary.vue'
 
 export default {
   components: {
     WorkIndicators,
     WorkOffSummary,
-    ScheduleList,
+    UserInfoSummary,
   },
   data() {
     return {

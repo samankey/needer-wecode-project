@@ -40,8 +40,8 @@
 </template>
 
 <script>
-import EmptyList from '../../../components/EmptyList.vue'
-import List from '../../../components/List.vue'
+import EmptyList from '../../components/EmptyList.vue'
+import List from '../../components/List.vue'
 
 export default {
   components: {
