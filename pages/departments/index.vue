@@ -1,100 +1,221 @@
 <template>
-  <div class="daysContainer">
-    <div class="categoryWrap">
-      <div class="scCategory">날짜 구성원</div>
+  <div>
+    <div class="handler">
+      <div v-if="isMonthly === true" class="dateHandler">
+        <button class="arrowHandler" @click="handleMonth('prev')">
+          <font-awesome-icon :icon="['fa', 'chevron-left']" />
+        </button>
+        <p class="dateIndicator">{{ year }}년 {{ month }}월</p>
+        <button class="arrowHandler" @click="handleMonth('next')">
+          <font-awesome-icon :icon="['fa', 'chevron-right']" />
+        </button>
+      </div>
+      <div v-else class="dateHandler">
+        <button class="arrowHandler" @click="handleWeek('prev')">
+          <font-awesome-icon :icon="['fa', 'chevron-left']" />
+        </button>
+        <p class="dateIndicator">{{ weekly[0] }} - {{ weekly[6] }}</p>
+        <button class="arrowHandler" @click="handleWeek('next')">
+          <font-awesome-icon :icon="['fa', 'chevron-right']" />
+        </button>
+      </div>
+      <button @click="backToday()">오늘</button>
+      <button @click="handleMonthlyBtn()">월</button>
+      <button @click="handleWeeklyBtn()">주</button>
     </div>
-    <div class="daysWrap">
-      <div v-for="(pl, index) in inputProps" :key="index" class="daysArray">
-        {{ pl }}
+    <div v-if="isMonthly === true" class="daysContainer">
+      <div class="categoryWrap">
+        <div class="scCategory">날짜 구성원</div>
+      </div>
+      <div class="daysWrap">
+        <div
+          v-for="(d, index) in dates"
+          :key="index"
+          :class="
+            today === d && thisMonth === month && thisYear === year
+              ? 'dates today'
+              : 'dates'
+          "
+        >
+          {{ d }}
+        </div>
+      </div>
+    </div>
+    <div v-else class="daysContainer">
+      <div class="categoryWrap">
+        <div class="scCategory">날짜 구성원</div>
+      </div>
+      <div class="daysWrap">
+        <div
+          v-for="(d, index) in weekly"
+          :key="index"
+          :class="
+            today === d && thisMonth === month && thisYear === year
+              ? 'dates today'
+              : 'dates'
+          "
+        >
+          {{ d }}
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import dayjs from 'dayjs'
-
-const utc = require('dayjs/plugin/utc')
-const timezone = require('dayjs/plugin/timezone')
-
-dayjs.extend(utc)
-dayjs.extend(timezone)
-
-const today = dayjs().tz('Asia/Seoul')
-
-const thisYear = today.year()
-const thisMonth = today.month()
-
-const firstDateOfMonth = dayjs([thisYear, thisMonth + 1]).tz('Asia/Seoul')
-// .add(9, 'hour')
-const daysInMonth = today.daysInMonth()
-const endDateOfMonth = firstDateOfMonth.add(daysInMonth, 'day')
-
-const getDatesBetweenDates = (startDate, endDate) => {
-  let dates = []
-  // to avoid modifying the original date
-  const theDate = new Date(startDate)
-  while (theDate.valueOf() < endDate.valueOf()) {
-    dates = [...dates, new Date(theDate)]
-    theDate.setDate(theDate.getDate() + 1)
-  }
-  console.log('suho:', dates)
-  dates = [...dates, endDate]
-
-  return dates
-}
-
-const dates = getDatesBetweenDates(firstDateOfMonth, endDateOfMonth)
-
-const datesPop = dates.pop()
-console.log('엔시발', datesPop)
-
 export default {
   data() {
     return {
-      inputs: dates,
+      year: 0,
+      month: 0,
+      prevLastDate: 0,
+      thisLastDate: 0,
+      PLDate: 0,
+      PLDay: 0,
+      TLDate: 0,
+      TLDay: 0,
+      dates: [],
+      weekly: [],
+      date: new Date(),
+      today: new Date().getDate(),
+      dayOfWeek: new Date().getDay(),
+      thisMonth: new Date().getMonth() + 1,
+      thisYear: new Date().getFullYear(),
+      isMonthly: true,
+      dateArray: [],
     }
   },
 
-  computed: {
-    inputProps() {
-      return this.inputs.map((input) =>
-        input.toString().split('').slice(8, 10).join('')
-      )
+  computed: {},
+
+  created() {
+    this.init()
+    this.weeklySchedule()
+  },
+
+  methods: {
+    getLastDate() {
+      this.thisLastDate = new Date(this.year, this.month, 0)
+      this.TLDate = this.thisLastDate.getDate()
+    },
+
+    init() {
+      this.year = this.date.getFullYear()
+      this.month = this.date.getMonth() + 1
+
+      this.getLastDate()
+
+      this.dates = [...Array(this.TLDate + 1).keys()].slice(1)
+    },
+
+    handleMonth(p) {
+      if (p === 'prev') {
+        this.month = this.date.setMonth(this.date.getMonth() - 1)
+        this.init()
+      } else {
+        this.month = this.date.setMonth(this.date.getMonth() + 1)
+        this.init()
+      }
+    },
+
+    weeklySchedule() {
+      this.today = this.date.getDate()
+
+      for (let i = 0; i < 7; i++) {
+        const resultDay = new Date(
+          this.thisYear,
+          this.thisMonth - 1,
+          this.today + (i - this.dayOfWeek)
+        )
+
+        const mm = resultDay.getMonth()
+        const dd = resultDay.getDate()
+
+        this.weekly[i] = mm + 1 + '.' + dd
+      }
+
+      const nn = this.weekly[0].split('.')[1]
+      const kk = this.weekly[6].split('.')[1]
+
+      if (nn > kk) {
+        this.thisMonth = this.date.getMonth() + 1
+      }
+
+      return this.weekly
+    },
+
+    handleWeek(p) {
+      if (p === 'prev') {
+        this.today = this.date.setDate(this.today - 7)
+        this.weeklySchedule()
+      } else {
+        this.today = this.date.setDate(this.today + 7)
+        this.weeklySchedule()
+      }
+    },
+
+    backToday() {
+      this.date = new Date()
+      this.init()
+    },
+
+    handleWeeklyBtn() {
+      this.isMonthly = false
+    },
+
+    handleMonthlyBtn() {
+      this.isMonthly = true
     },
   },
-  // input.toString().split().slice(2, 3)
-  // computed: {
-  //   inputProps() {
-  //     return this.inputs.map((input, index) => ({
-  //       id: index,
-  //       className: input.class,
-  //       type: input.type,
-  //       placeholder: input.placeholder,
-  //     }))
-  //   },
-  // },
-
-  methods: {},
 }
 </script>
 
 <style lang="scss" scoped>
+.handler {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .dateHandler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .arrowHandler {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .dateIndicator {
+      margin: 20px 0;
+      padding: 0 20px;
+    }
+  }
+}
+
 .daysContainer {
   display: flex;
   align-items: center;
+  box-shadow: rgba(20, 20, 20, 0.02) 2px 8px 12px 0px,
+    rgba(20, 20, 20, 0.02) 0px 1px 3px 0px;
 
   .daysWrap {
     display: flex;
 
-    .daysArray {
+    .dates {
       display: flex;
       align-items: center;
       height: 72px;
-      padding: 10px;
-      border-right: 1px solid;
-      border-top: 1px solid;
-      border-bottom: 1px solid;
+      padding: 20px;
+      border-right: 1px solid rgb(231, 231, 231);
+      border-top: 1px solid rgb(231, 231, 231);
+      border-bottom: 1px solid rgb(231, 231, 231);
+    }
+
+    .today {
+      color: #fff;
+      background-color: rgb(37, 66, 233);
     }
   }
 
@@ -106,8 +227,7 @@ export default {
     .scCategory {
       width: 190px;
       height: 72px;
-      border: 1px solid;
-      box-sizing: border-box;
+      border: 1px solid rgb(231, 231, 231);
       padding: 10px 10px 10px 20px;
       display: flex;
       align-items: center;
