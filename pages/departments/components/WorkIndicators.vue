@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import WorkStatus from '../../components/WorkStatus.vue'
+import WorkStatus from '../../../components/WorkStatus.vue'
 
 export default {
   components: {

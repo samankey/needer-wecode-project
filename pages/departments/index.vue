@@ -1,21 +1,12 @@
 <template>
   <div>
     <div class="handler">
-      <div v-if="isMonthly === true" class="dateHandler">
-        <button class="arrowHandler" @click="handleMonth('prev')">
+      <div class="dateHandler">
+        <button class="arrowHandler" @click="handleArrow('prev')">
           <font-awesome-icon :icon="['fa', 'chevron-left']" />
         </button>
-        <p class="dateIndicator">{{ year }}년 {{ month }}월</p>
-        <button class="arrowHandler" @click="handleMonth('next')">
-          <font-awesome-icon :icon="['fa', 'chevron-right']" />
-        </button>
-      </div>
-      <div v-else class="dateHandler">
-        <button class="arrowHandler" @click="handleWeek('prev')">
-          <font-awesome-icon :icon="['fa', 'chevron-left']" />
-        </button>
-        <p class="dateIndicator">{{ weekly[0] }} - {{ weekly[6] }}</p>
-        <button class="arrowHandler" @click="handleWeek('next')">
+        <p class="dateIndicator">{{ handleNav() }}</p>
+        <button class="arrowHandler" @click="handleArrow('next')">
           <font-awesome-icon :icon="['fa', 'chevron-right']" />
         </button>
       </div>
@@ -24,10 +15,10 @@
       <button @click="handleWeeklyBtn()">주</button>
     </div>
     <div v-if="isMonthly === true" class="daysContainer">
-      <div class="categoryWrap">
-        <div class="scCategory">날짜 구성원</div>
-      </div>
       <div class="daysWrap">
+        <div class="category">
+          <div class="scCategory">날짜 구성원</div>
+        </div>
         <div
           v-for="(d, index) in dates"
           :key="index"
@@ -59,30 +50,54 @@
         </div>
       </div>
     </div>
+    <div class="modalWrap">
+      <Modalview v-if="isModalViewed" @close-modal="modalSearch()">
+        <Modal />
+      </Modalview>
+
+      <button
+        @click="
+          isModalViewed = true
+          modalSearch2()
+        "
+      >
+        Open Modal
+      </button>
+    </div>
+
+    <Check />
   </div>
 </template>
 
 <script>
+import Modal from './Modal'
+import Modalview from './components/Modalview'
+// import CheckBox from './components/CheckBox.vue'
+import Check from './components/Check.vue'
+
 export default {
+  components: {
+    Modal,
+    Modalview,
+    // CheckBox,
+    Check,
+  },
+
   data() {
     return {
-      year: 0,
-      month: 0,
-      prevLastDate: 0,
-      thisLastDate: 0,
-      PLDate: 0,
-      PLDay: 0,
-      TLDate: 0,
-      TLDay: 0,
-      dates: [],
-      weekly: [],
-      date: new Date(),
-      today: new Date().getDate(),
-      dayOfWeek: new Date().getDay(),
-      thisMonth: new Date().getMonth() + 1,
-      thisYear: new Date().getFullYear(),
-      isMonthly: true,
-      dateArray: [],
+      year: 0, // 월 단위에서 쓰임, 바뀌는 값
+      month: 0, // 바뀌는 값, month 값을 사용하는 곳에서
+      thisLastDate: 0, // year, month가 변경되면 바뀌는 해당 달 마지막 날 구하는 값
+      TLDate: 0, // thisLastDate의 날짜 값
+      dates: [], // 월 단위 날짜 데이터
+      weekly: [], // 주 단위 날짜 데이터
+      date: new Date(), // 오늘 기준의 Date 추출
+      today: new Date().getDate(), // 오늘 기준 날짜 추출
+      dayOfWeek: new Date().getDay(), // 오늘 기준 요일 추출
+      thisMonth: new Date().getMonth() + 1, // 오늘 기준 달 추출
+      thisYear: new Date().getFullYear(), // 오늘 기준 년도 추출
+      isMonthly: true, // 월/주 변경 boolean
+      isModalViewed: false, // 모달 버튼
     }
   },
 
@@ -92,8 +107,19 @@ export default {
     this.init()
     this.weeklySchedule()
   },
-
+  // 모달서치 함수 삼항연산자 고려해보기 변수명 다시 짓기
   methods: {
+    modalSearch() {
+      this.$router.push({ path: 'departments' })
+      return (this.isModalViewed = false)
+    },
+
+    modalSearch2() {
+      if (this.isModalViewed === true) {
+        this.$router.push({ path: 'departments', query: { plan: 'private' } })
+      }
+    },
+
     getLastDate() {
       this.thisLastDate = new Date(this.year, this.month, 0)
       this.TLDate = this.thisLastDate.getDate()
@@ -119,8 +145,6 @@ export default {
     },
 
     weeklySchedule() {
-      this.today = this.date.getDate()
-
       for (let i = 0; i < 7; i++) {
         const resultDay = new Date(
           this.thisYear,
@@ -133,24 +157,32 @@ export default {
 
         this.weekly[i] = mm + 1 + '.' + dd
       }
-
-      const nn = this.weekly[0].split('.')[1]
-      const kk = this.weekly[6].split('.')[1]
-
-      if (nn > kk) {
-        this.thisMonth = this.date.getMonth() + 1
-      }
-
       return this.weekly
     },
 
     handleWeek(p) {
       if (p === 'prev') {
-        this.today = this.date.setDate(this.today - 7)
+        this.today = this.today - 7
         this.weeklySchedule()
       } else {
-        this.today = this.date.setDate(this.today + 7)
+        this.today = this.today + 7
         this.weeklySchedule()
+      }
+    },
+
+    handleNav() {
+      if (this.isMonthly) {
+        return this.year + '년 ' + this.month + '월'
+      } else {
+        return this.weekly[0] + ' - ' + this.weekly[6]
+      }
+    },
+
+    handleArrow(p) {
+      if (this.isMonthly) {
+        this.handleMonth(p)
+      } else {
+        this.handleWeek(p)
       }
     },
 
@@ -195,43 +227,39 @@ export default {
 }
 
 .daysContainer {
-  display: flex;
-  align-items: center;
-  box-shadow: rgba(20, 20, 20, 0.02) 2px 8px 12px 0px,
-    rgba(20, 20, 20, 0.02) 0px 1px 3px 0px;
+  min-width: 1120px;
 
   .daysWrap {
     display: flex;
+    height: 72px;
+
+    .category {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      position: sticky;
+      left: 0;
+      background-color: yellow;
+      border: 1px solid;
+
+      .scCategory {
+        width: 190px;
+        padding: 0 20px;
+      }
+    }
 
     .dates {
       display: flex;
+      justify-content: center;
       align-items: center;
-      height: 72px;
-      padding: 20px;
-      border-right: 1px solid rgb(231, 231, 231);
-      border-top: 1px solid rgb(231, 231, 231);
-      border-bottom: 1px solid rgb(231, 231, 231);
+      width: 100%;
+      height: 100%;
+      border: 1px solid #111;
     }
 
     .today {
       color: #fff;
       background-color: rgb(37, 66, 233);
-    }
-  }
-
-  .categoryWrap {
-    display: flex;
-    width: 190px;
-    height: 72px;
-
-    .scCategory {
-      width: 190px;
-      height: 72px;
-      border: 1px solid rgb(231, 231, 231);
-      padding: 10px 10px 10px 20px;
-      display: flex;
-      align-items: center;
-      font-weight: 500;
     }
   }
 }
