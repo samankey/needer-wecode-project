@@ -54,7 +54,6 @@
       <Modalview v-if="isModalViewed" @close-modal="modalSearch()">
         <Modal />
       </Modalview>
-
       <button
         @click="
           isModalViewed = true
@@ -64,22 +63,20 @@
         Open Modal
       </button>
     </div>
-
-    <Check />
+    <button class="workType" @click="workTypeButton = true">suhomans</button>
+    <Check v-if="workTypeButton" />
   </div>
 </template>
 
 <script>
-import Modal from './Modal'
+import Modal from './components/Modal'
 import Modalview from './components/Modalview'
-// import CheckBox from './components/CheckBox.vue'
 import Check from './components/Check.vue'
 
 export default {
   components: {
     Modal,
     Modalview,
-    // CheckBox,
     Check,
   },
 
@@ -98,6 +95,7 @@ export default {
       thisYear: new Date().getFullYear(), // 오늘 기준 년도 추출
       isMonthly: true, // 월/주 변경 boolean
       isModalViewed: false, // 모달 버튼
+      workTypeButton: false,
     }
   },
 
@@ -262,5 +260,18 @@ export default {
       background-color: rgb(37, 66, 233);
     }
   }
+}
+
+.workType {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  cursor: pointer;
+  border-radius: 10px;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 13px;
+  box-sizing: border-box;
 }
 </style>

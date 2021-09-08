@@ -17,9 +17,9 @@
 </template>
 
 <script>
-import WorkOffSummary from './components/WorkOffSummary.vue'
-import ScheduleList from './components/ScheduleList.vue'
-import WorkIndicators from './components/WorkIndicators.vue'
+import WorkOffSummary from './WorkOffSummary.vue'
+import ScheduleList from './ScheduleList.vue'
+import WorkIndicators from './WorkIndicators.vue'
 
 export default {
   components: {
