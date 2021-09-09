@@ -78,6 +78,7 @@ export default {
 }
 
 .checkboxCon {
+  position: absolute;
   width: 200px;
   border-radius: 5px;
   padding: 8px;

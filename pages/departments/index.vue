@@ -13,6 +13,24 @@
       <button @click="backToday()">오늘</button>
       <button @click="handleMonthlyBtn()">월</button>
       <button @click="handleWeeklyBtn()">주</button>
+      <div>
+        <button class="workType" @click="toggleOnOff()">근무 확인</button>
+        <Check v-if="workTypeButton" />
+      </div>
+      <div class="modalWrap">
+        <Modalview v-if="isModalViewed" @close-modal="modalSearch()">
+          <Modal />
+        </Modalview>
+        <button
+          class="modalButton"
+          @click="
+            isModalViewed = true
+            modalSearchQuery()
+          "
+        >
+          내 스케줄
+        </button>
+      </div>
     </div>
     <div v-if="isMonthly === true" class="daysContainer">
       <div class="daysWrap">
@@ -50,21 +68,6 @@
         </div>
       </div>
     </div>
-    <div class="modalWrap">
-      <Modalview v-if="isModalViewed" @close-modal="modalSearch()">
-        <Modal />
-      </Modalview>
-      <button
-        @click="
-          isModalViewed = true
-          modalSearch2()
-        "
-      >
-        Open Modal
-      </button>
-    </div>
-    <button class="workType" @click="workTypeButton = true">suhomans</button>
-    <Check v-if="workTypeButton" />
   </div>
 </template>
 
@@ -112,10 +115,14 @@ export default {
       return (this.isModalViewed = false)
     },
 
-    modalSearch2() {
+    modalSearchQuery() {
       if (this.isModalViewed === true) {
         this.$router.push({ path: 'departments', query: { plan: 'private' } })
       }
+    },
+
+    toggleOnOff() {
+      this.workTypeButton = !this.workTypeButton
     },
 
     getLastDate() {
@@ -237,7 +244,6 @@ export default {
       height: 100%;
       position: sticky;
       left: 0;
-      background-color: yellow;
       border: 1px solid;
 
       .scCategory {
@@ -252,7 +258,9 @@ export default {
       align-items: center;
       width: 100%;
       height: 100%;
-      border: 1px solid #111;
+      border-top: 1px solid #111;
+      border-bottom: 1px solid #111;
+      border-right: 1px solid #111;
     }
 
     .today {
@@ -262,16 +270,10 @@ export default {
   }
 }
 
+.modalButton {
+}
+
 .workType {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 38px;
-  cursor: pointer;
-  border-radius: 10px;
-  padding-left: 16px;
-  padding-right: 16px;
-  font-size: 13px;
-  box-sizing: border-box;
+  position: relative;
 }
 </style>
